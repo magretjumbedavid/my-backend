@@ -1,0 +1,4981 @@
+openapi: 3.0.3
+info:
+  title: MalipoFlex API
+  version: 1.0.0
+  description: Savings, Loans, and Pension Tracking System for Informal Workers
+paths:
+  /api/api/expire-guarantors/:
+    post:
+      operationId: api_api_expire_guarantors_create
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/api/forgot-password/:
+    post:
+      operationId: api_api_forgot_password_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ForgotPassword'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ForgotPassword'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ForgotPassword'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForgotPassword'
+          description: ''
+  /api/api/guarantors/:
+    get:
+      operationId: api_api_guarantors_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Guarantor'
+          description: ''
+    post:
+      operationId: api_api_guarantors_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Guarantor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Guarantor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Guarantor'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Guarantor'
+          description: ''
+  /api/api/guarantors/{guarantor_id}/:
+    get:
+      operationId: api_api_guarantors_retrieve
+      parameters:
+      - in: path
+        name: guarantor_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this guarantor.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Guarantor'
+          description: ''
+    put:
+      operationId: api_api_guarantors_update
+      parameters:
+      - in: path
+        name: guarantor_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this guarantor.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Guarantor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Guarantor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Guarantor'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Guarantor'
+          description: ''
+    patch:
+      operationId: api_api_guarantors_partial_update
+      parameters:
+      - in: path
+        name: guarantor_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this guarantor.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedGuarantor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedGuarantor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedGuarantor'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Guarantor'
+          description: ''
+    delete:
+      operationId: api_api_guarantors_destroy
+      parameters:
+      - in: path
+        name: guarantor_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this guarantor.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/api/guarantors/{guarantor_id}/check_status/:
+    get:
+      operationId: api_api_guarantors_check_status_retrieve
+      parameters:
+      - in: path
+        name: guarantor_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this guarantor.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Guarantor'
+          description: ''
+  /api/api/guarantors/{guarantor_id}/respond/:
+    post:
+      operationId: api_api_guarantors_respond_create
+      parameters:
+      - in: path
+        name: guarantor_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this guarantor.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Guarantor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Guarantor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Guarantor'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Guarantor'
+          description: ''
+  /api/api/loan-accounts/:
+    get:
+      operationId: api_api_loan_accounts_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LoanAccount'
+          description: ''
+    post:
+      operationId: api_api_loan_accounts_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoanAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/LoanAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/LoanAccount'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanAccount'
+          description: ''
+  /api/api/loan-accounts/{loan_id}/:
+    get:
+      operationId: api_api_loan_accounts_retrieve
+      parameters:
+      - in: path
+        name: loan_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this loan account.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanAccount'
+          description: ''
+    put:
+      operationId: api_api_loan_accounts_update
+      parameters:
+      - in: path
+        name: loan_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this loan account.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoanAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/LoanAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/LoanAccount'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanAccount'
+          description: ''
+    patch:
+      operationId: api_api_loan_accounts_partial_update
+      parameters:
+      - in: path
+        name: loan_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this loan account.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedLoanAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedLoanAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedLoanAccount'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanAccount'
+          description: ''
+    delete:
+      operationId: api_api_loan_accounts_destroy
+      parameters:
+      - in: path
+        name: loan_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this loan account.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/api/loan-accounts/{loan_id}/approve/:
+    post:
+      operationId: api_api_loan_accounts_approve_create
+      parameters:
+      - in: path
+        name: loan_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this loan account.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoanAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/LoanAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/LoanAccount'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanAccount'
+          description: ''
+  /api/api/loan-repayments/:
+    get:
+      operationId: api_api_loan_repayments_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LoanRepayment'
+          description: ''
+    post:
+      operationId: api_api_loan_repayments_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoanRepayment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/LoanRepayment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/LoanRepayment'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanRepayment'
+          description: ''
+  /api/api/loan-repayments/{repayment_id}/:
+    get:
+      operationId: api_api_loan_repayments_retrieve
+      parameters:
+      - in: path
+        name: repayment_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this loan repayment.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanRepayment'
+          description: ''
+    put:
+      operationId: api_api_loan_repayments_update
+      parameters:
+      - in: path
+        name: repayment_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this loan repayment.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoanRepayment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/LoanRepayment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/LoanRepayment'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanRepayment'
+          description: ''
+    patch:
+      operationId: api_api_loan_repayments_partial_update
+      parameters:
+      - in: path
+        name: repayment_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this loan repayment.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedLoanRepayment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedLoanRepayment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedLoanRepayment'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanRepayment'
+          description: ''
+    delete:
+      operationId: api_api_loan_repayments_destroy
+      parameters:
+      - in: path
+        name: repayment_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this loan repayment.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/api/login/:
+    post:
+      operationId: api_api_login_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserLogin'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserLogin'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserLogin'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserLogin'
+          description: ''
+  /api/api/pension-accounts/:
+    get:
+      operationId: api_api_pension_accounts_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PensionAccount'
+          description: ''
+    post:
+      operationId: api_api_pension_accounts_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PensionAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PensionAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PensionAccount'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PensionAccount'
+          description: ''
+  /api/api/pension-accounts/{id}/:
+    get:
+      operationId: api_api_pension_accounts_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this pension account.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PensionAccount'
+          description: ''
+    put:
+      operationId: api_api_pension_accounts_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this pension account.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PensionAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PensionAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PensionAccount'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PensionAccount'
+          description: ''
+    patch:
+      operationId: api_api_pension_accounts_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this pension account.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedPensionAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedPensionAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedPensionAccount'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PensionAccount'
+          description: ''
+    delete:
+      operationId: api_api_pension_accounts_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this pension account.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/api/pensions/:
+    get:
+      operationId: api_api_pensions_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pension'
+          description: ''
+    post:
+      operationId: api_api_pensions_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pension'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Pension'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Pension'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pension'
+          description: ''
+  /api/api/pensions/{id}/:
+    get:
+      operationId: api_api_pensions_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this pension_provider.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pension'
+          description: ''
+    put:
+      operationId: api_api_pensions_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this pension_provider.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pension'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Pension'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Pension'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pension'
+          description: ''
+    patch:
+      operationId: api_api_pensions_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this pension_provider.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedPension'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedPension'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedPension'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pension'
+          description: ''
+    delete:
+      operationId: api_api_pensions_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this pension_provider.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/api/policies/:
+    get:
+      operationId: api_api_policies_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Policy'
+          description: ''
+    post:
+      operationId: api_api_policies_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Policy'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Policy'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Policy'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policy'
+          description: ''
+  /api/api/policies/{id}/:
+    get:
+      operationId: api_api_policies_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this policy.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policy'
+          description: ''
+    put:
+      operationId: api_api_policies_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this policy.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Policy'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Policy'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Policy'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policy'
+          description: ''
+    patch:
+      operationId: api_api_policies_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this policy.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedPolicy'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedPolicy'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedPolicy'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policy'
+          description: ''
+    delete:
+      operationId: api_api_policies_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this policy.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/api/profile/:
+    get:
+      operationId: api_api_profile_retrieve
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+          description: ''
+  /api/api/register/:
+    post:
+      operationId: api_api_register_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRegister'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserRegister'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserRegister'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserRegister'
+          description: ''
+  /api/api/reset-password/:
+    post:
+      operationId: api_api_reset_password_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetPassword'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ResetPassword'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ResetPassword'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResetPassword'
+          description: ''
+  /api/api/savings-accounts/:
+    get:
+      operationId: api_api_savings_accounts_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SavingsAccount'
+          description: ''
+    post:
+      operationId: api_api_savings_accounts_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SavingsAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SavingsAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SavingsAccount'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SavingsAccount'
+          description: ''
+  /api/api/savings-accounts/{saving_id}/:
+    get:
+      operationId: api_api_savings_accounts_retrieve
+      parameters:
+      - in: path
+        name: saving_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SavingsAccount'
+          description: ''
+    put:
+      operationId: api_api_savings_accounts_update
+      parameters:
+      - in: path
+        name: saving_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SavingsAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SavingsAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SavingsAccount'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SavingsAccount'
+          description: ''
+    patch:
+      operationId: api_api_savings_accounts_partial_update
+      parameters:
+      - in: path
+        name: saving_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedSavingsAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedSavingsAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedSavingsAccount'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SavingsAccount'
+          description: ''
+    delete:
+      operationId: api_api_savings_accounts_destroy
+      parameters:
+      - in: path
+        name: saving_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/api/savings-accounts/apply_interest/:
+    post:
+      operationId: api_api_savings_accounts_apply_interest_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SavingsAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SavingsAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SavingsAccount'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SavingsAccount'
+          description: ''
+  /api/api/savings-contributions/:
+    get:
+      operationId: api_api_savings_contributions_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SavingsContribution'
+          description: ''
+    post:
+      operationId: api_api_savings_contributions_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SavingsContribution'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SavingsContribution'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SavingsContribution'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SavingsContribution'
+          description: ''
+  /api/api/savings-contributions/{id}/:
+    get:
+      operationId: api_api_savings_contributions_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this savings contribution.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SavingsContribution'
+          description: ''
+    put:
+      operationId: api_api_savings_contributions_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this savings contribution.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SavingsContribution'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SavingsContribution'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SavingsContribution'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SavingsContribution'
+          description: ''
+    patch:
+      operationId: api_api_savings_contributions_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this savings contribution.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedSavingsContribution'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedSavingsContribution'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedSavingsContribution'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SavingsContribution'
+          description: ''
+    delete:
+      operationId: api_api_savings_contributions_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this savings contribution.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/api/transactions/:
+    get:
+      operationId: api_api_transactions_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Transaction'
+          description: ''
+    post:
+      operationId: api_api_transactions_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+          description: ''
+  /api/api/transactions/{id}/:
+    get:
+      operationId: api_api_transactions_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Transaction.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+          description: ''
+    put:
+      operationId: api_api_transactions_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Transaction.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+          description: ''
+    patch:
+      operationId: api_api_transactions_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Transaction.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedTransaction'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedTransaction'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedTransaction'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+          description: ''
+    delete:
+      operationId: api_api_transactions_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Transaction.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/api/users/:
+    get:
+      operationId: api_api_users_list
+      parameters:
+      - in: query
+        name: user_type
+        schema:
+          type: string
+          enum:
+          - MANAGER
+          - MEMBER
+        description: |-
+          * `MEMBER` - Member
+          * `MANAGER` - Manager
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+          description: ''
+    post:
+      operationId: api_api_users_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+  /api/api/users/{id}/:
+    get:
+      operationId: api_api_users_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this user.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    put:
+      operationId: api_api_users_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this user.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    patch:
+      operationId: api_api_users_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this user.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    delete:
+      operationId: api_api_users_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this user.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/api/verify-code/:
+    post:
+      operationId: api_api_verify_code_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VerifyOTP'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/VerifyOTP'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/VerifyOTP'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerifyOTP'
+          description: ''
+  /api/api/vsla-accounts/:
+    get:
+      operationId: api_api_vsla_accounts_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VSLAAccount'
+          description: ''
+    post:
+      operationId: api_api_vsla_accounts_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VSLAAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/VSLAAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/VSLAAccount'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VSLAAccount'
+          description: ''
+  /api/api/vsla-accounts/{vsla_id}/:
+    get:
+      operationId: api_api_vsla_accounts_retrieve
+      parameters:
+      - in: path
+        name: vsla_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this vsl a_ account.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VSLAAccount'
+          description: ''
+    put:
+      operationId: api_api_vsla_accounts_update
+      parameters:
+      - in: path
+        name: vsla_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this vsl a_ account.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VSLAAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/VSLAAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/VSLAAccount'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VSLAAccount'
+          description: ''
+    patch:
+      operationId: api_api_vsla_accounts_partial_update
+      parameters:
+      - in: path
+        name: vsla_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this vsl a_ account.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedVSLAAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedVSLAAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedVSLAAccount'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VSLAAccount'
+          description: ''
+    delete:
+      operationId: api_api_vsla_accounts_destroy
+      parameters:
+      - in: path
+        name: vsla_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this vsl a_ account.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/guarantors/:
+    get:
+      operationId: api_guarantors_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Guarantor'
+          description: ''
+    post:
+      operationId: api_guarantors_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Guarantor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Guarantor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Guarantor'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Guarantor'
+          description: ''
+  /api/guarantors/{guarantor_id}/:
+    get:
+      operationId: api_guarantors_retrieve
+      parameters:
+      - in: path
+        name: guarantor_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this guarantor.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Guarantor'
+          description: ''
+    put:
+      operationId: api_guarantors_update
+      parameters:
+      - in: path
+        name: guarantor_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this guarantor.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Guarantor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Guarantor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Guarantor'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Guarantor'
+          description: ''
+    patch:
+      operationId: api_guarantors_partial_update
+      parameters:
+      - in: path
+        name: guarantor_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this guarantor.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedGuarantor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedGuarantor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedGuarantor'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Guarantor'
+          description: ''
+    delete:
+      operationId: api_guarantors_destroy
+      parameters:
+      - in: path
+        name: guarantor_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this guarantor.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/guarantors/{guarantor_id}/check_status/:
+    get:
+      operationId: api_guarantors_check_status_retrieve
+      parameters:
+      - in: path
+        name: guarantor_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this guarantor.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Guarantor'
+          description: ''
+  /api/guarantors/{guarantor_id}/respond/:
+    post:
+      operationId: api_guarantors_respond_create
+      parameters:
+      - in: path
+        name: guarantor_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this guarantor.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Guarantor'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Guarantor'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Guarantor'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Guarantor'
+          description: ''
+  /api/loan-accounts/:
+    get:
+      operationId: api_loan_accounts_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LoanAccount'
+          description: ''
+    post:
+      operationId: api_loan_accounts_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoanAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/LoanAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/LoanAccount'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanAccount'
+          description: ''
+  /api/loan-accounts/{loan_id}/:
+    get:
+      operationId: api_loan_accounts_retrieve
+      parameters:
+      - in: path
+        name: loan_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this loan account.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanAccount'
+          description: ''
+    put:
+      operationId: api_loan_accounts_update
+      parameters:
+      - in: path
+        name: loan_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this loan account.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoanAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/LoanAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/LoanAccount'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanAccount'
+          description: ''
+    patch:
+      operationId: api_loan_accounts_partial_update
+      parameters:
+      - in: path
+        name: loan_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this loan account.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedLoanAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedLoanAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedLoanAccount'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanAccount'
+          description: ''
+    delete:
+      operationId: api_loan_accounts_destroy
+      parameters:
+      - in: path
+        name: loan_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this loan account.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/loan-accounts/{loan_id}/approve/:
+    post:
+      operationId: api_loan_accounts_approve_create
+      parameters:
+      - in: path
+        name: loan_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this loan account.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoanAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/LoanAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/LoanAccount'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanAccount'
+          description: ''
+  /api/loan-repayments/:
+    get:
+      operationId: api_loan_repayments_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LoanRepayment'
+          description: ''
+    post:
+      operationId: api_loan_repayments_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoanRepayment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/LoanRepayment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/LoanRepayment'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanRepayment'
+          description: ''
+  /api/loan-repayments/{repayment_id}/:
+    get:
+      operationId: api_loan_repayments_retrieve
+      parameters:
+      - in: path
+        name: repayment_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this loan repayment.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanRepayment'
+          description: ''
+    put:
+      operationId: api_loan_repayments_update
+      parameters:
+      - in: path
+        name: repayment_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this loan repayment.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoanRepayment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/LoanRepayment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/LoanRepayment'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanRepayment'
+          description: ''
+    patch:
+      operationId: api_loan_repayments_partial_update
+      parameters:
+      - in: path
+        name: repayment_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this loan repayment.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedLoanRepayment'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedLoanRepayment'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedLoanRepayment'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanRepayment'
+          description: ''
+    delete:
+      operationId: api_loan_repayments_destroy
+      parameters:
+      - in: path
+        name: repayment_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this loan repayment.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/pension-accounts/:
+    get:
+      operationId: api_pension_accounts_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PensionAccount'
+          description: ''
+    post:
+      operationId: api_pension_accounts_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PensionAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PensionAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PensionAccount'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PensionAccount'
+          description: ''
+  /api/pension-accounts/{id}/:
+    get:
+      operationId: api_pension_accounts_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this pension account.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PensionAccount'
+          description: ''
+    put:
+      operationId: api_pension_accounts_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this pension account.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PensionAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PensionAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PensionAccount'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PensionAccount'
+          description: ''
+    patch:
+      operationId: api_pension_accounts_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this pension account.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedPensionAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedPensionAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedPensionAccount'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PensionAccount'
+          description: ''
+    delete:
+      operationId: api_pension_accounts_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this pension account.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/pensions/:
+    get:
+      operationId: api_pensions_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pension'
+          description: ''
+    post:
+      operationId: api_pensions_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pension'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Pension'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Pension'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pension'
+          description: ''
+  /api/pensions/{id}/:
+    get:
+      operationId: api_pensions_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this pension_provider.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pension'
+          description: ''
+    put:
+      operationId: api_pensions_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this pension_provider.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Pension'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Pension'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Pension'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pension'
+          description: ''
+    patch:
+      operationId: api_pensions_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this pension_provider.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedPension'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedPension'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedPension'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pension'
+          description: ''
+    delete:
+      operationId: api_pensions_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this pension_provider.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/policies/:
+    get:
+      operationId: api_policies_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Policy'
+          description: ''
+    post:
+      operationId: api_policies_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Policy'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Policy'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Policy'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policy'
+          description: ''
+  /api/policies/{id}/:
+    get:
+      operationId: api_policies_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this policy.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policy'
+          description: ''
+    put:
+      operationId: api_policies_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this policy.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Policy'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Policy'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Policy'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policy'
+          description: ''
+    patch:
+      operationId: api_policies_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this policy.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedPolicy'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedPolicy'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedPolicy'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policy'
+          description: ''
+    delete:
+      operationId: api_policies_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this policy.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/savings-accounts/:
+    get:
+      operationId: api_savings_accounts_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SavingsAccount'
+          description: ''
+    post:
+      operationId: api_savings_accounts_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SavingsAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SavingsAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SavingsAccount'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SavingsAccount'
+          description: ''
+  /api/savings-accounts/{saving_id}/:
+    get:
+      operationId: api_savings_accounts_retrieve
+      parameters:
+      - in: path
+        name: saving_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SavingsAccount'
+          description: ''
+    put:
+      operationId: api_savings_accounts_update
+      parameters:
+      - in: path
+        name: saving_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SavingsAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SavingsAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SavingsAccount'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SavingsAccount'
+          description: ''
+    patch:
+      operationId: api_savings_accounts_partial_update
+      parameters:
+      - in: path
+        name: saving_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedSavingsAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedSavingsAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedSavingsAccount'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SavingsAccount'
+          description: ''
+    delete:
+      operationId: api_savings_accounts_destroy
+      parameters:
+      - in: path
+        name: saving_id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/savings-accounts/apply_interest/:
+    post:
+      operationId: api_savings_accounts_apply_interest_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SavingsAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SavingsAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SavingsAccount'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SavingsAccount'
+          description: ''
+  /api/savings-contributions/:
+    get:
+      operationId: api_savings_contributions_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SavingsContribution'
+          description: ''
+    post:
+      operationId: api_savings_contributions_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SavingsContribution'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SavingsContribution'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SavingsContribution'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SavingsContribution'
+          description: ''
+  /api/savings-contributions/{id}/:
+    get:
+      operationId: api_savings_contributions_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this savings contribution.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SavingsContribution'
+          description: ''
+    put:
+      operationId: api_savings_contributions_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this savings contribution.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SavingsContribution'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SavingsContribution'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SavingsContribution'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SavingsContribution'
+          description: ''
+    patch:
+      operationId: api_savings_contributions_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this savings contribution.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedSavingsContribution'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedSavingsContribution'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedSavingsContribution'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SavingsContribution'
+          description: ''
+    delete:
+      operationId: api_savings_contributions_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this savings contribution.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/token-auth/:
+    post:
+      operationId: api_token_auth_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/AuthToken'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/AuthToken'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthToken'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthToken'
+          description: ''
+  /api/transactions/:
+    get:
+      operationId: api_transactions_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Transaction'
+          description: ''
+    post:
+      operationId: api_transactions_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+          description: ''
+  /api/transactions/{id}/:
+    get:
+      operationId: api_transactions_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Transaction.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+          description: ''
+    put:
+      operationId: api_transactions_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Transaction.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+          description: ''
+    patch:
+      operationId: api_transactions_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Transaction.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedTransaction'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedTransaction'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedTransaction'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+          description: ''
+    delete:
+      operationId: api_transactions_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this Transaction.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/users/:
+    get:
+      operationId: api_users_list
+      parameters:
+      - in: query
+        name: user_type
+        schema:
+          type: string
+          enum:
+          - MANAGER
+          - MEMBER
+        description: |-
+          * `MEMBER` - Member
+          * `MANAGER` - Manager
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+          description: ''
+    post:
+      operationId: api_users_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+  /api/users/{id}/:
+    get:
+      operationId: api_users_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this user.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    put:
+      operationId: api_users_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this user.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    patch:
+      operationId: api_users_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this user.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    delete:
+      operationId: api_users_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this user.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /api/vsla-accounts/:
+    get:
+      operationId: api_vsla_accounts_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VSLAAccount'
+          description: ''
+    post:
+      operationId: api_vsla_accounts_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VSLAAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/VSLAAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/VSLAAccount'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VSLAAccount'
+          description: ''
+  /api/vsla-accounts/{vsla_id}/:
+    get:
+      operationId: api_vsla_accounts_retrieve
+      parameters:
+      - in: path
+        name: vsla_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this vsl a_ account.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VSLAAccount'
+          description: ''
+    put:
+      operationId: api_vsla_accounts_update
+      parameters:
+      - in: path
+        name: vsla_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this vsl a_ account.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VSLAAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/VSLAAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/VSLAAccount'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VSLAAccount'
+          description: ''
+    patch:
+      operationId: api_vsla_accounts_partial_update
+      parameters:
+      - in: path
+        name: vsla_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this vsl a_ account.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedVSLAAccount'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedVSLAAccount'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedVSLAAccount'
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VSLAAccount'
+          description: ''
+    delete:
+      operationId: api_vsla_accounts_destroy
+      parameters:
+      - in: path
+        name: vsla_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this vsl a_ account.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '204':
+          description: No response body
+  /daraja/b2b-callback/:
+    post:
+      operationId: daraja_b2b_callback_create
+      tags:
+      - daraja
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /daraja/b2c-callback/:
+    post:
+      operationId: daraja_b2c_callback_create
+      tags:
+      - daraja
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /daraja/b2c-payment/:
+    post:
+      operationId: daraja_b2c_payment_create
+      tags:
+      - daraja
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /daraja/callback/:
+    post:
+      operationId: daraja_callback_create
+      tags:
+      - daraja
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /daraja/stk-push/:
+    post:
+      operationId: daraja_stk_push_create
+      tags:
+      - daraja
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+components:
+  schemas:
+    AccountTypeEnum:
+      enum:
+      - loan_repayment
+      - savings
+      - loan_disbursement
+      - pension_contribution
+      type: string
+      description: |-
+        * `loan_repayment` - Loan Repayment
+        * `savings` - Savings
+        * `loan_disbursement` - Loan Disbursement
+        * `pension_contribution` - Pension Contribution
+    AuthToken:
+      type: object
+      properties:
+        username:
+          type: string
+          writeOnly: true
+        password:
+          type: string
+          writeOnly: true
+        token:
+          type: string
+          readOnly: true
+      required:
+      - password
+      - token
+      - username
+    ForgotPassword:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+      required:
+      - email
+    FrequencyOfPaymentEnum:
+      enum:
+      - daily
+      - weekly
+      - monthly
+      type: string
+      description: |-
+        * `daily` - Daily
+        * `weekly` - Weekly
+        * `monthly` - Monthly
+    Guarantor:
+      type: object
+      properties:
+        guarantor_id:
+          type: integer
+          readOnly: true
+        guarantor_name:
+          type: string
+          maxLength: 100
+        guarantor_phone_number:
+          type: string
+          maxLength: 20
+        status:
+          $ref: '#/components/schemas/GuarantorStatusEnum'
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        responded_at:
+          type: string
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        loan:
+          type: integer
+        member:
+          type: integer
+      required:
+      - created_at
+      - guarantor_id
+      - guarantor_name
+      - guarantor_phone_number
+      - loan
+      - member
+      - updated_at
+    GuarantorStatusEnum:
+      enum:
+      - Pending
+      - Approved
+      - Rejected
+      - Expired
+      type: string
+      description: |-
+        * `Pending` - Pending
+        * `Approved` - Approved
+        * `Rejected` - Rejected
+        * `Expired` - Expired
+    LoanAccount:
+      type: object
+      properties:
+        loan_id:
+          type: integer
+          readOnly: true
+        total_interest:
+          type: string
+          readOnly: true
+        total_repayment:
+          type: string
+          readOnly: true
+        loan_status:
+          $ref: '#/components/schemas/LoanStatusEnum'
+        requested_amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        loan_type:
+          $ref: '#/components/schemas/LoanTypeEnum'
+        loan_reason:
+          type: string
+          maxLength: 255
+        total_loan_repaid:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        interest_rate:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
+        timeline_months:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        frequency_of_payment:
+          $ref: '#/components/schemas/FrequencyOfPaymentEnum'
+        payment_amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
+        requested_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        approved_at:
+          type: string
+          format: date-time
+          nullable: true
+        disbursed_at:
+          type: string
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        rejection_reason:
+          type: string
+          nullable: true
+        repayment_due_date:
+          type: string
+          format: date-time
+          nullable: true
+        member:
+          type: integer
+        manager:
+          type: integer
+          nullable: true
+        transaction_id_b2c:
+          type: integer
+          nullable: true
+      required:
+      - created_at
+      - interest_rate
+      - loan_id
+      - loan_reason
+      - member
+      - requested_amount
+      - timeline_months
+      - total_interest
+      - total_repayment
+      - updated_at
+    LoanRepayment:
+      type: object
+      properties:
+        repayment_id:
+          type: integer
+          readOnly: true
+        loan_amount_repaid:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        loan_repayment_status:
+          $ref: '#/components/schemas/LoanRepaymentStatusEnum'
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        loan:
+          type: integer
+        transaction:
+          type: integer
+          nullable: true
+      required:
+      - created_at
+      - loan
+      - loan_amount_repaid
+      - loan_repayment_status
+      - repayment_id
+      - updated_at
+    LoanRepaymentStatusEnum:
+      enum:
+      - Pending
+      - Completed
+      - Overdue
+      type: string
+      description: |-
+        * `Pending` - Pending
+        * `Completed` - Completed
+        * `Overdue` - Overdue
+    LoanStatusEnum:
+      enum:
+      - DRAFT
+      - PENDING_GUARANTOR
+      - PENDING_MANAGER
+      - APPROVED
+      - REJECTED
+      - DISBURSED
+      - COMPLETED
+      type: string
+      description: |-
+        * `DRAFT` - Draft
+        * `PENDING_GUARANTOR` - Pending Guarantor Approval
+        * `PENDING_MANAGER` - Pending Manager Approval
+        * `APPROVED` - Approved
+        * `REJECTED` - Rejected
+        * `DISBURSED` - Disbursed
+        * `COMPLETED` - Completed
+    LoanTypeEnum:
+      enum:
+      - emergency
+      - personal
+      - business
+      type: string
+      description: |-
+        * `emergency` - Emergency
+        * `personal` - Personal
+        * `business` - Business
+    PatchedGuarantor:
+      type: object
+      properties:
+        guarantor_id:
+          type: integer
+          readOnly: true
+        guarantor_name:
+          type: string
+          maxLength: 100
+        guarantor_phone_number:
+          type: string
+          maxLength: 20
+        status:
+          $ref: '#/components/schemas/GuarantorStatusEnum'
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        responded_at:
+          type: string
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        loan:
+          type: integer
+        member:
+          type: integer
+    PatchedLoanAccount:
+      type: object
+      properties:
+        loan_id:
+          type: integer
+          readOnly: true
+        total_interest:
+          type: string
+          readOnly: true
+        total_repayment:
+          type: string
+          readOnly: true
+        loan_status:
+          $ref: '#/components/schemas/LoanStatusEnum'
+        requested_amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        loan_type:
+          $ref: '#/components/schemas/LoanTypeEnum'
+        loan_reason:
+          type: string
+          maxLength: 255
+        total_loan_repaid:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        interest_rate:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
+        timeline_months:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        frequency_of_payment:
+          $ref: '#/components/schemas/FrequencyOfPaymentEnum'
+        payment_amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          nullable: true
+        requested_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        approved_at:
+          type: string
+          format: date-time
+          nullable: true
+        disbursed_at:
+          type: string
+          format: date-time
+          nullable: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        rejection_reason:
+          type: string
+          nullable: true
+        repayment_due_date:
+          type: string
+          format: date-time
+          nullable: true
+        member:
+          type: integer
+        manager:
+          type: integer
+          nullable: true
+        transaction_id_b2c:
+          type: integer
+          nullable: true
+    PatchedLoanRepayment:
+      type: object
+      properties:
+        repayment_id:
+          type: integer
+          readOnly: true
+        loan_amount_repaid:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        loan_repayment_status:
+          $ref: '#/components/schemas/LoanRepaymentStatusEnum'
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        loan:
+          type: integer
+        transaction:
+          type: integer
+          nullable: true
+    PatchedPension:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        payBill_number:
+          type: string
+          maxLength: 20
+        status:
+          $ref: '#/components/schemas/PensionStatusEnum'
+    PatchedPensionAccount:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        is_opted_in:
+          type: boolean
+        contribution_percentage:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
+        total_pension_amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          readOnly: true
+        provider:
+          type: integer
+          nullable: true
+        provider_name:
+          type: string
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedPolicy:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 100
+        description:
+          type: string
+        effective_date:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedSavingsAccount:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        progress_percentage:
+          type: string
+          readOnly: true
+        savings_target:
+          type: string
+          readOnly: true
+        progress_tier:
+          type: string
+          readOnly: true
+        member_account_balance:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,2})?$
+        interest_incurred:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,2})?$
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        member:
+          type: integer
+    PatchedSavingsContribution:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        member:
+          type: integer
+        saving:
+          type: integer
+        contributed_amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        pension_amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        vsla_amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        transaction_id_c2b:
+          type: integer
+          nullable: true
+        transaction_id_b2b:
+          type: integer
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        completed_at:
+          type: string
+          format: date-time
+          nullable: true
+    PatchedTransaction:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        transaction_type:
+          $ref: '#/components/schemas/TransactionTypeEnum'
+        checkout_request_id:
+          type: string
+          nullable: true
+          maxLength: 100
+        account_reference:
+          type: string
+          nullable: true
+          maxLength: 50
+        amount_transacted:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        paybill_number:
+          type: string
+          maxLength: 30
+        recipient_phone_number:
+          type: string
+          maxLength: 20
+        account_type:
+          $ref: '#/components/schemas/AccountTypeEnum'
+        payment_transaction_status:
+          $ref: '#/components/schemas/PaymentTransactionStatusEnum'
+        callback_url:
+          type: string
+          maxLength: 225
+        description:
+          type: string
+          nullable: true
+          description: Human-readable transaction note
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        completed_at:
+          type: string
+          format: date-time
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        member:
+          type: integer
+          nullable: true
+        manager:
+          type: integer
+          nullable: true
+        provider:
+          type: integer
+          nullable: true
+          description: Pension provider for B2B transfers
+    PatchedUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        first_name:
+          type: string
+          maxLength: 50
+        last_name:
+          type: string
+          maxLength: 50
+        phone_number:
+          type: string
+          nullable: true
+          maxLength: 20
+        password:
+          type: string
+          writeOnly: true
+        user_type:
+          $ref: '#/components/schemas/UserType609Enum'
+        national_id:
+          type: string
+          nullable: true
+          maxLength: 128
+        kra_pin:
+          type: string
+          nullable: true
+          maxLength: 100
+        next_of_kin_name:
+          type: string
+          nullable: true
+          maxLength: 100
+        email:
+          type: string
+          format: email
+          maxLength: 255
+        next_of_kin_id:
+          type: string
+          nullable: true
+          maxLength: 100
+    PatchedVSLAAccount:
+      type: object
+      properties:
+        vsla_id:
+          type: integer
+          readOnly: true
+        account_name:
+          type: string
+          maxLength: 255
+        account_balance:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    PaymentTransactionStatusEnum:
+      enum:
+      - initiated
+      - success
+      - failed
+      - timeout
+      - processing
+      type: string
+      description: |-
+        * `initiated` - Initiated
+        * `success` - Success
+        * `failed` - Failed
+        * `timeout` - Timeout
+        * `processing` - Processing
+    Pension:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        payBill_number:
+          type: string
+          maxLength: 20
+        status:
+          $ref: '#/components/schemas/PensionStatusEnum'
+      required:
+      - id
+      - name
+      - payBill_number
+      - status
+    PensionAccount:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        is_opted_in:
+          type: boolean
+        contribution_percentage:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,3}(?:\.\d{0,2})?$
+        total_pension_amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+          readOnly: true
+        provider:
+          type: integer
+          nullable: true
+        provider_name:
+          type: string
+          readOnly: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - id
+      - provider_name
+      - total_pension_amount
+      - updated_at
+    PensionStatusEnum:
+      enum:
+      - active
+      - inactive
+      type: string
+      description: |-
+        * `active` - active
+        * `inactive` - inactive
+    Policy:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 100
+        description:
+          type: string
+        effective_date:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - description
+      - effective_date
+      - id
+      - title
+    ResetPassword:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        new_password:
+          type: string
+          minLength: 8
+        confirm_password:
+          type: string
+          writeOnly: true
+          minLength: 8
+      required:
+      - confirm_password
+      - email
+      - new_password
+    SavingsAccount:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        progress_percentage:
+          type: string
+          readOnly: true
+        savings_target:
+          type: string
+          readOnly: true
+        progress_tier:
+          type: string
+          readOnly: true
+        member_account_balance:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,2})?$
+        interest_incurred:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,2})?$
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        member:
+          type: integer
+      required:
+      - created_at
+      - id
+      - member
+      - progress_percentage
+      - progress_tier
+      - savings_target
+      - updated_at
+    SavingsContribution:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        member:
+          type: integer
+        saving:
+          type: integer
+        contributed_amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        pension_amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        vsla_amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        transaction_id_c2b:
+          type: integer
+          nullable: true
+        transaction_id_b2b:
+          type: integer
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        completed_at:
+          type: string
+          format: date-time
+          nullable: true
+      required:
+      - contributed_amount
+      - created_at
+      - id
+      - member
+      - saving
+    Transaction:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        transaction_type:
+          $ref: '#/components/schemas/TransactionTypeEnum'
+        checkout_request_id:
+          type: string
+          nullable: true
+          maxLength: 100
+        account_reference:
+          type: string
+          nullable: true
+          maxLength: 50
+        amount_transacted:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        paybill_number:
+          type: string
+          maxLength: 30
+        recipient_phone_number:
+          type: string
+          maxLength: 20
+        account_type:
+          $ref: '#/components/schemas/AccountTypeEnum'
+        payment_transaction_status:
+          $ref: '#/components/schemas/PaymentTransactionStatusEnum'
+        callback_url:
+          type: string
+          maxLength: 225
+        description:
+          type: string
+          nullable: true
+          description: Human-readable transaction note
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+        completed_at:
+          type: string
+          format: date-time
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        member:
+          type: integer
+          nullable: true
+        manager:
+          type: integer
+          nullable: true
+        provider:
+          type: integer
+          nullable: true
+          description: Pension provider for B2B transfers
+      required:
+      - account_type
+      - amount_transacted
+      - created_at
+      - id
+      - transaction_type
+      - updated_at
+    TransactionTypeEnum:
+      enum:
+      - C2B
+      - B2C
+      - B2B
+      type: string
+      description: |-
+        * `C2B` - Customer to Business
+        * `B2C` - Business to Customer
+        * `B2B` - Business to Business
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        first_name:
+          type: string
+          maxLength: 50
+        last_name:
+          type: string
+          maxLength: 50
+        phone_number:
+          type: string
+          nullable: true
+          maxLength: 20
+        password:
+          type: string
+          writeOnly: true
+        user_type:
+          $ref: '#/components/schemas/UserType609Enum'
+        national_id:
+          type: string
+          nullable: true
+          maxLength: 128
+        kra_pin:
+          type: string
+          nullable: true
+          maxLength: 100
+        next_of_kin_name:
+          type: string
+          nullable: true
+          maxLength: 100
+        email:
+          type: string
+          format: email
+          maxLength: 255
+        next_of_kin_id:
+          type: string
+          nullable: true
+          maxLength: 100
+      required:
+      - email
+      - id
+      - password
+    UserLogin:
+      type: object
+      properties:
+        phone_number:
+          type: string
+        password:
+          type: string
+          writeOnly: true
+      required:
+      - password
+      - phone_number
+    UserProfile:
+      type: object
+      properties:
+        first_name:
+          type: string
+          maxLength: 50
+        last_name:
+          type: string
+          maxLength: 50
+        user_type:
+          $ref: '#/components/schemas/UserType609Enum'
+        phone_number:
+          type: string
+          nullable: true
+          maxLength: 20
+        profile_image:
+          type: string
+          format: uri
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+    UserRegister:
+      type: object
+      properties:
+        first_name:
+          type: string
+          maxLength: 50
+        last_name:
+          type: string
+          maxLength: 50
+        user_type:
+          $ref: '#/components/schemas/UserRegisterUserTypeEnum'
+        phone_number:
+          type: string
+        password:
+          type: string
+          writeOnly: true
+        national_id:
+          type: string
+          nullable: true
+          maxLength: 128
+        kra_pin:
+          type: string
+          nullable: true
+          maxLength: 100
+        next_of_kin_name:
+          type: string
+          nullable: true
+          maxLength: 100
+        email:
+          type: string
+          format: email
+        next_of_kin_id:
+          type: string
+          nullable: true
+          maxLength: 100
+      required:
+      - email
+      - password
+      - phone_number
+      - user_type
+    UserRegisterUserTypeEnum:
+      enum:
+      - member
+      - manager
+      type: string
+      description: |-
+        * `member` - Member
+        * `manager` - Manager
+    UserType609Enum:
+      enum:
+      - MEMBER
+      - MANAGER
+      type: string
+      description: |-
+        * `MEMBER` - Member
+        * `MANAGER` - Manager
+    VSLAAccount:
+      type: object
+      properties:
+        vsla_id:
+          type: integer
+          readOnly: true
+        account_name:
+          type: string
+          maxLength: 255
+        account_balance:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - account_balance
+      - account_name
+      - created_at
+      - updated_at
+      - vsla_id
+    VerifyOTP:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        otp_code:
+          type: string
+          maxLength: 4
+      required:
+      - email
+      - otp_code
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
