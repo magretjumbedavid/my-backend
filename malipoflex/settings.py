@@ -1,17 +1,29 @@
 from pathlib import Path
 import os
 from dotenv import load_dotenv
-load_dotenv()
+
+load_dotenv()  # Load environment variables from .env file
+
 import dj_database_url
 
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
+# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-insecure-key-for-dev-only')
 
-DEBUG = False
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = os.getenv('DEBUG', 'False').lower() in ['true', '1', 't']
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'my-backend-grmo.onrender.com,localhost').split(',')
+# Parse ALLOWED_HOSTS safely
+ALLOWED_HOSTS = [
+    host.strip()
+    for host in os.getenv('ALLOWED_HOSTS', 'my-backend-grmo.onrender.com,localhost,127.0.0.1').split(',')
+    if host.strip()
+]
 
+# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -23,13 +35,13 @@ INSTALLED_APPS = [
     'corsheaders',
     'loans',
     'api',
-    'rest_framework.authtoken',
     'transaction',
+    'savings',
+    'vsla',
+    'policy',
+    'pension',
     'rest_framework',
-    "savings",
-    "vsla",
-    "policy",
-    "pension",
+    'rest_framework.authtoken',
     'django_filters',
     'drf_spectacular',
     'drf_spectacular_sidecar',
@@ -51,7 +63,12 @@ MIDDLEWARE = [
     "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
-CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS', '').split(',') or []
+# CORS settings — safely parse and filter empty entries
+CORS_ALLOWED_ORIGINS = [
+    origin.strip()
+    for origin in os.getenv('CORS_ALLOWED_ORIGINS', '').split(',')
+    if origin.strip()
+]
 
 ROOT_URLCONF = "malipoflex.urls"
 
@@ -72,8 +89,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "malipoflex.wsgi.application"
 
-DATABASES = {"default": dj_database_url.config(default=os.getenv("DATABASE_URL"))}
-if not os.getenv("DATABASE_URL"):
+
+# Database
+# Use DATABASE_URL from environment or fallback to SQLite for local dev
+if os.getenv("DATABASE_URL"):
+    DATABASES = {"default": dj_database_url.config(default=os.getenv("DATABASE_URL"))}
+else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
@@ -81,34 +102,40 @@ if not os.getenv("DATABASE_URL"):
         }
     }
 
+
+# Password validation
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
-    },
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
+
+# Internationalization
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
-MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Only include STATICFILES_DIRS if the 'static' folder exists
+if (BASE_DIR / 'static').exists():
+    STATICFILES_DIRS = [BASE_DIR / 'static']
+else:
+    STATICFILES_DIRS = []
+
+
+# Media files
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / 'media'
+
+
+# DRF Spectacular (OpenAPI/Swagger)
 SPECTACULAR_SETTINGS = {
     'TITLE': 'MalipoFlex API',
     'DESCRIPTION': 'Savings, Loans, and Pension Tracking System for Informal Workers',
@@ -119,9 +146,15 @@ SPECTACULAR_SETTINGS = {
     'REDOC_DIST': 'SIDECAR',
 }
 
+
+# Default primary key field type
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Custom user model
 AUTH_USER_MODEL = 'users.User'
 
+
+# Email settings
 EMAIL_BACKEND = os.getenv('EMAIL_BACKEND', 'django.core.mail.backends.console.EmailBackend')
 EMAIL_HOST = os.getenv('EMAIL_HOST', 'smtp.gmail.com')
 EMAIL_PORT = int(os.getenv('EMAIL_PORT', 587))
@@ -130,10 +163,12 @@ EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'malipoflex@gmail.com')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
+
+# Daraja (M-Pesa) API settings
 DARAJA_CONSUMER_KEY = os.getenv('DARAJA_CONSUMER_KEY')
 DARAJA_CONSUMER_SECRET = os.getenv('DARAJA_CONSUMER_SECRET')
 DARAJA_SHORTCODE = os.getenv('DARAJA_SHORTCODE')
 DARAJA_PASSKEY = os.getenv('DARAJA_PASSKEY')
-DARAJA_CALLBACK_URL = os.getenv('DARAJA_CALLBACK_URL', 'https://my-backend-grmo.onrender.com/api/payments/daraja-callback/')
-DARAJA_B2C_CALLBACK_URL = os.getenv('DARAJA_B2C_CALLBACK_URL', 'https://my-backend-grmo.onrender.com/api/payments/daraja-callback/')
-DARAJA_B2B_CALLBACK_URL = os.getenv('DARAJA_B2B_CALLBACK_URL', 'https://my-backend-grmo.onrender.com/api/payments/daraja-callback/')
+DARAJA_CALLBACK_URL = os.getenv('DARAJA_CALLBACK_URL', 'https://my-backend-grmo.onrender.com/api/payments/daraja-callback/').strip()
+DARAJA_B2C_CALLBACK_URL = os.getenv('DARAJA_B2C_CALLBACK_URL', 'https://my-backend-grmo.onrender.com/api/payments/daraja-callback/').strip()
+DARAJA_B2B_CALLBACK_URL = os.getenv('DARAJA_B2B_CALLBACK_URL', 'https://my-backend-grmo.onrender.com/api/payments/daraja-callback/').strip()
